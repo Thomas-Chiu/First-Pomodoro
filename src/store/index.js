@@ -4,47 +4,44 @@ import createPersistedState from 'vuex-persistedstate'
 
 Vue.use(Vuex)
 
-const timeLeft = parseInt(process.env.VUE_APP_TIMELEFT) // 從這裡引用環境檔的變數
+const timeLeft = parseInt(process.env.VUE_APP_TIMELEFT) // 注意環境檔變數要用parseInt()
 const timeLeftBreak = parseInt(process.env.VUE_APP_TIMELEFT_BREAK)
 
 export default new Vuex.Store({
-  state: { // 在state 定義番茄鐘預設的狀態
+  state: {
     todos: [],
-    timeLeft, // key 值和變數名稱一樣可不用寫value
+    timeLeft: 0,
     alarm: 'alarm_engine1.mp3',
     current: '',
-    breakTime: false
+    isBreak: false
   },
-  getters: {
-    alarm (state) {
-      return state.alarm
-    },
+  getters: { // 取state 資料的中介
     todos (state) {
       return state.todos
     },
     timeLeft (state) {
       return state.timeLeft
     },
+    alarm (state) {
+      return state.alarm
+    },
     current (state) {
       return state.current
     },
-    breakTime (state) {
-      return state.breakTime
+    isBreak (state) {
+      return state.isBreak
     }
   },
-  mutations: {
-    selectAlarm (state, data) { // 不懂要問
+  mutations: { // 傳到state 資料的中介
+    selectAlarm (state, data) {
       state.alarm = data
     },
     addTodo (state, data) {
-      state.todos.push({ // 一次push 3個東西，名稱
-        name: data,
+      state.todos.push({
+        name: data, // item 確定的名字
         edit: false,
-        model: data
+        model: data // item 編輯中的名字
       })
-    },
-    dragTodo (state, data) {
-      state.todos = data
     },
     delTodo (state, data) {
       state.todos.splice(data, 1)
@@ -60,24 +57,25 @@ export default new Vuex.Store({
       state.todos[data].edit = false
       state.todos[data].name = state.todos[data].model
     },
-    start (state) {
-      if (state.breakTime) {
-        state.current = '休息一下'
-      } else if (!state.breakTime) {
-        state.current = state.todos[0].name
-        state.todos.splice(0, 1)
-      }
+    dragTodo (state, data) {
+      state.todos = data
     },
     countdown (state) {
       state.timeLeft--
     },
-    finish (state) {
-      if (state.todos.length > 0) {
-        state.breakTime = !state.breakTime
+    start (state) {
+      if (state.isBreak) state.current = 'Take a break!'
+      else if (!state.isBreak) {
+        state.current = state.todos[0].name
+        state.todos.splice(0, 1) // at position 0, remove 1 item
       }
+    },
+    finish (state) {
+      if (state.todos.length > 0) state.isBreak = !state.isBreak
       state.current = ''
-      state.timeLeft = state.breakTime ? timeLeftBreak : timeLeft
+      state.timeLeft = state.isBreak ? timeLeftBreak : timeLeft
     }
+
   },
   actions: {
   },

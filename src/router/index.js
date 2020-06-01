@@ -10,15 +10,15 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      title: 'Pomodoro | Home'
+      title: 'Home'
     }
   },
   {
     path: '/list',
     name: 'List',
-    component: () => import(/* webpackChunkName: "about" */ '../views/List.vue'),
+    component: () => import('../views/List.vue'),
     meta: {
-      title: 'Pomodoro | To-do List'
+      title: 'List'
     }
   },
   {
@@ -26,11 +26,11 @@ const routes = [
     name: 'Settings',
     component: () => import('../views/Settings.vue'),
     meta: {
-      title: 'Pomodoro | Settings'
+      title: 'Settings'
     }
   },
-  { // 自行定義404 元件，使用者搜尋不到時會導向這裡
-    path: '*',
+  {
+    path: '*', // 404 用 *
     name: 'NotFound',
     component: () => import('../views/NotFound.vue'),
     meta: {

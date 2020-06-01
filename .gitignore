@@ -1,6 +1,9 @@
 .DS_Store
 node_modules
 /dist
+.env.development
+.env.production
+pomodoro_gh-token.txt
 
 # local env files
 .env.local

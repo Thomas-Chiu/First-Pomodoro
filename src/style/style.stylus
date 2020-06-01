@@ -1,0 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap'); // 匯入字體方法一
+
+body 
+  font-family var(--font-family-sans-serif), "Noto Sans TC" // 匯入字體方法二 (npm install noto-sans-tc，在CSS 變數 --font-family-sans-serif 新增 "Noto Sans TC")

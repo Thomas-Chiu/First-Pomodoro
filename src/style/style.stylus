@@ -2,3 +2,13 @@
 
 body 
   font-family var(--font-family-sans-serif), "Noto Sans TC" // 匯入字體方法二 (npm install noto-sans-tc，在CSS 變數 --font-family-sans-serif 新增 "Noto Sans TC")
+  background #ccc
+  color #000
+
+#app
+  text-align center
+  margin-top 60px
+  a
+    font-size 1.3rem
+    &:hover
+      color tomato

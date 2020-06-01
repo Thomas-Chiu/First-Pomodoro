@@ -9,7 +9,7 @@ module.exports = {
       // APP 主題顏色
       theme_color: '#4DBA87',
       // APP 啟動畫面背景色
-      background_color: '#000',
+      background_color: '#fff',
       // APP 顯示範圍
       scope: './',
       // APP 開始畫面網址

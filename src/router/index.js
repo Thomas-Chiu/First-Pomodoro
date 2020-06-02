@@ -22,11 +22,19 @@ const routes = [
     }
   },
   {
-    path: '/settings',
-    name: 'Settings',
-    component: () => import('../views/Settings.vue'),
+    path: '/setting',
+    name: 'Setting',
+    component: () => import('../views/Setting.vue'),
     meta: {
-      title: 'Settings'
+      title: 'Setting'
+    }
+  },
+  {
+    path: '/report',
+    name: 'Report',
+    component: () => import('../views/Report.vue'),
+    meta: {
+      title: 'Setting'
     }
   },
   {

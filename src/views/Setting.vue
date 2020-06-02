@@ -1,16 +1,15 @@
 <template lang="pug">
   #settings
-    hr
     b-table(:items="items" :fields="fields" @row-clicked="selectAlarm")
       template(v-slot:cell(preview)="data")
-        audio(controls :src="'./alarms/'+data.item.file")
+        audio(controls :src="'./alarms/' + data.item.file")
       template(v-slot:cell(select)="data")
         font-awesome-icon(v-if="data.item.file == alarm" :icon="['fas', 'check']")
 </template>
 
 <script>
 export default {
-  name: 'Settings',
+  name: 'Setting',
   data () {
     return {
       items: [

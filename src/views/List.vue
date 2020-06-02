@@ -1,6 +1,5 @@
 <template lang="pug">
   #list
-    hr
     b-input(v-model="newTodo" maxlength="15")
     b-btn(variant="warning" @click="addTodo") Add
     b-table-simple

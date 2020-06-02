@@ -1,25 +1,45 @@
 <template lang="pug">
   #home
-    hr
-    h3 {{ currentText }}
-    h4 {{ timeText }}
-    //- 根據狀態碼來判斷顯示哪些按鈕
-    b-btn(v-if="status != 1" @click="start")
-      font-awesome-icon(:icon="['fas', 'play']")
-    b-btn(v-if="status == 1" @click="pause")
-      font-awesome-icon(:icon="['fas', 'pause']")
-    b-btn(v-if="todos.length > 0" @click="finish(true)")
-      font-awesome-icon(:icon="['fas', 'step-forward']")
+    b-list-group(id="taskInfo")
+      b-list-group-item DATE
+      b-list-group-item Task Name
+      b-list-group-item Color
+    #bb8(class="row")
+      img(:src="'./img/icons/bb-8_icon.png'" class="col-12")
+      h3(class="col-12") {{ currentText }}
+      h4(class="col-12") {{ timeText }}
+      //- 根據狀態碼來判斷顯示哪些按鈕
+      radial-progress-bar(id="progress" :diameter="diameter" :innerStrokeColor="innerStrokeColor" :completed-steps="timeLeft" :total-steps="totalSteps" :animateSpeed="animateSpeed" :timingFunc="timingFunc")
+      b-btn(id="play" @click="start" variant="link")
+        font-awesome-icon(:icon="['fas', 'play']")
+      b-btn(id="pause" @click="pause" variant="link")
+        font-awesome-icon(:icon="['fas', 'pause']")
+      b-btn(id="forward" @click="finish(true)" variant="link")
+        font-awesome-icon(:icon="['fas', 'fast-forward']")
+      b-btn(id="backward" variant="link")
+        font-awesome-icon(:icon="['fas', 'fast-backward']")
 </template>
 
 <script>
+import RadialProgressBar from 'vue-radial-progress'
+const timeLeftOG = parseInt(process.env.VUE_APP_TIMELEFT) // 注意環境檔變數要用parseInt()
+
 export default {
   name: 'Home',
   data () {
     return {
       status: 0, // 定義狀態碼 0 = 停止、1 = 播放、2 = 暫停
-      timer: 0
+      timer: 0,
+      // completedSteps: this.$store.getters.timeLeft, // 以下是RadialProgressBar 的變數
+      totalSteps: timeLeftOG,
+      diameter: 175,
+      innerStrokeColor: '#093830',
+      animateSpeed: 1000,
+      timingFunc: 'linear'
     }
+  },
+  components: {
+    RadialProgressBar
   },
   computed: {
     currentText () { // current.length > 0 代表字串裡有文字

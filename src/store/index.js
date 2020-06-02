@@ -1,7 +1,11 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import createPersistedState from 'vuex-persistedstate'
+import VueAnalytics from 'vue-analytics'
 
+Vue.use(VueAnalytics, { // vue-analytics: https://www.npmjs.com/package/vue-analytics
+  id: 'UA-168230205-1  '
+})
 Vue.use(Vuex)
 
 const timeLeft = parseInt(process.env.VUE_APP_TIMELEFT) // 注意環境檔變數要用parseInt()

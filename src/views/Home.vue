@@ -9,7 +9,7 @@
       h3(class="col-12") {{ currentText }}
       h4(class="col-12") {{ timeText }}
       //- 根據狀態碼來判斷顯示哪些按鈕
-      radial-progress-bar(id="progress" :diameter="diameter" :innerStrokeColor="innerStrokeColor" :completed-steps="timeLeft" :total-steps="totalSteps" :animateSpeed="animateSpeed" :timingFunc="timingFunc")
+      radial-progress-bar(id="progress" :diameter="diameter" :startColor="startColor" :stopColor="stopColor" :innerStrokeColor="innerStrokeColor" :completed-steps="timeLeft" :total-steps="totalSteps" :animateSpeed="animateSpeed" :timingFunc="timingFunc" :isClockwise="isClockwise")
       b-btn(id="play" @click="start" variant="link")
         font-awesome-icon(:icon="['fas', 'play']")
       b-btn(id="pause" @click="pause" variant="link")
@@ -33,9 +33,12 @@ export default {
       // completedSteps: this.$store.getters.timeLeft, // 以下是RadialProgressBar 的變數
       totalSteps: timeLeftOG,
       diameter: 175,
+      startColor: '#e6664d',
+      stopColor: '#e6664d',
       innerStrokeColor: '#093830',
-      animateSpeed: 1000,
-      timingFunc: 'linear'
+      animateSpeed: 750,
+      timingFunc: 'linear',
+      isClockwise: false
     }
   },
   components: {
@@ -69,7 +72,11 @@ export default {
         this.status = 1
         this.timer = setInterval(() => {
           this.$store.commit('countdown')
-          if (this.timeLeft <= 0) this.finish(false) // 用finish(bool) 判斷是否播alarm 音效
+          if (this.timeLeft <= 0) {
+            setTimeout(() => { // 讓countdown 倒數到0
+              this.finish(false) // 用finish(bool) 判斷是否播alarm 音效
+            }, 500)
+          }
         }, 1000)
       } else { // 開始新倒數
         if (this.todos.length > 0) {
@@ -77,7 +84,11 @@ export default {
           this.status = 1
           this.timer = setInterval(() => {
             this.$store.commit('countdown')
-            if (this.timeLeft <= 0) this.finish(false)
+            if (this.timeLeft <= 0) {
+              setTimeout(() => {
+                this.finish(false)
+              }, 500)
+            }
           }, 1000)
         }
       }

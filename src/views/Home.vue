@@ -1,13 +1,13 @@
 <template lang="pug">
   #home
     b-list-group(id="taskInfo" class="col-md-5")
-      b-list-group-item DATE
-      b-list-group-item Task Name
-      b-list-group-item Color
+      b-list-group-item DATE : {{ dateText }}
+      b-list-group-item TASK : {{ currentText }}
+      b-list-group-item TIMER : {{ timeText }}
     #bb8(class="row")
       img(:src="'./img/icons/bb-8_icon.png'" class="col-12")
-      h3(class="col-12") {{ currentText }}
-      h4(class="col-12") {{ timeText }}
+      //- h3(class="col-12") {{ currentText }}
+      //- h4(class="col-12") {{ timeText }}
       //- 根據狀態碼來判斷顯示哪些按鈕
       radial-progress-bar(id="progress" :diameter="diameter" :startColor="startColor" :stopColor="stopColor" :innerStrokeColor="innerStrokeColor" :completed-steps="timeLeft" :total-steps="totalSteps" :animateSpeed="animateSpeed" :timingFunc="timingFunc" :isClockwise="isClockwise")
       b-btn(id="play" @click="start" variant="link")
@@ -23,6 +23,7 @@
 <script>
 import RadialProgressBar from 'vue-radial-progress'
 const timeLeftOG = parseInt(process.env.VUE_APP_TIMELEFT) // 注意環境檔變數要用parseInt()
+const date = new Date()
 
 export default {
   name: 'Home',
@@ -45,13 +46,17 @@ export default {
     RadialProgressBar
   },
   computed: {
+    dateText () {
+      return date
+      // return `${date.getTime()}`
+    },
     currentText () { // current.length > 0 代表字串裡有文字
       return this.current.length > 0 ? this.current : this.todos.length > 0 ? 'Click to start.' : 'All done.'
     },
     timeText () {
       const min = Math.floor(this.timeLeft / 60)
       const sec = Math.floor(this.timeLeft % 60)
-      return `${min} : ${sec}`
+      return `${min} ' ${sec} "`
     },
     timeLeft () {
       return this.$store.getters.timeLeft

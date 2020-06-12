@@ -77,18 +77,19 @@ body
 @media(min-width 540px)
   #bb8 
       #progress
-        padding 7.5% 0
+        padding 12.5% 0
 
 @media(min-width 768px)
   #home 
     flex-flow row nowrap
     align-items center
     #taskInfo 
+      font-size 1.25rem
       .list-group-item
         margin 5rem
     #bb8 
       #progress
-        padding 7.5% 0
+        padding 12.5% 0
       img 
         max-width 50%
     

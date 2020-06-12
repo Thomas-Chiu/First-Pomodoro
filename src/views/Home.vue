@@ -1,6 +1,6 @@
 <template lang="pug">
   #home
-    b-list-group(id="taskInfo")
+    b-list-group(id="taskInfo" class="col-md-5")
       b-list-group-item DATE
       b-list-group-item Task Name
       b-list-group-item Color
@@ -32,7 +32,7 @@ export default {
       timer: 0,
       // completedSteps: this.$store.getters.timeLeft, // 以下是RadialProgressBar 的變數
       totalSteps: timeLeftOG,
-      diameter: 175,
+      diameter: 100,
       startColor: '#e6664d',
       stopColor: '#e6664d',
       innerStrokeColor: '#093830',

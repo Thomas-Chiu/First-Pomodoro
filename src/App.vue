@@ -9,7 +9,6 @@
       span  |
       router-link(to='/')
         font-awesome-icon(:icon="['far', 'plus-square']")
-        //- b-btn(variant="link")
       span  |
       router-link(to='/report')
         font-awesome-icon(:icon="['fas', 'chart-bar']")
@@ -19,5 +18,4 @@
     //- keeo-alive 很重要，切換分頁時仍繼續執行倒數動作
     keep-alive
       router-view
-
 </template>

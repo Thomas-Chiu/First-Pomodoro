@@ -70,14 +70,14 @@ body
       top 40%
     img 
       object-fit cover
-      max-width 50%
+      max-width 40%
     button  
       color #093830
 
 @media(min-width 540px)
   #bb8 
-      #progress
-        padding 12.5% 0
+    #progress
+      padding 12.5% 0
 
 @media(min-width 768px)
   #home 
@@ -92,4 +92,36 @@ body
         padding 12.5% 0
       img 
         max-width 50%
+
+#list
+  position relative
+  table
+    table-layout fixed
+  .inputEdit
+    width 75%
+    display block
+    margin-left auto
+  .inputAdd
+    width 50%
+    vertical-align middle
+    position fixed
+    left 20%
+    bottom 15%
+  .btnAdd
+    position fixed
+    left 70%
+    bottom 15%
+  .btnAction
+    color  #093830
+    &:focus
+      color tomato
+
+
     
+
+
+
+
+
+      
+

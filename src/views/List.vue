@@ -1,7 +1,5 @@
 <template lang="pug">
-  #list
-    b-input(v-model="newTodo" maxlength="15")
-    b-btn(variant="warning" @click="addTodo") Add
+  #list(class="pt-3")
     b-table-simple
       b-thead
         b-tr
@@ -10,22 +8,24 @@
       draggable(v-model="todos" tag="tbody" v-bind="dragOption")
         //- list 表格
         b-tr(v-if="todos.length == 0")
-          b-td(colspan="2") No new tasks.
+          b-td(colspan="2") No new task.
         b-tr(v-else v-for="(todo, index) in todos" :key="index")
           b-td
             //- 當編輯list item
-            b-form-input(v-if="todo.edit" v-model="todo.model")
-            b-btn(v-if="todo.edit" variant="link" class="text-white-50" @click="cancelTodo(index)")
+            b-form-input(v-if="todo.edit" v-model="todo.model" class="inputEdit")
+            b-btn(v-if="todo.edit" variant="link" class="text-black-50" @click="cancelTodo(index)")
               font-awesome-icon(:icon="['fas', 'undo']")
             b-btn(v-if="todo.edit" variant="link" class="text-black-50" @click="saveTodo(index)")
               font-awesome-icon(:icon="['fas', 'save']")
             span(v-else) {{ todo.name }}
           b-td
             //- 編輯 & 刪除icon
-            b-btn(variant="info" class="rounded-circle" @click="editTodo(index)")
+            b-btn(variant="link" class="rounded-circle btnAction" @click="editTodo(index)")
               font-awesome-icon(:icon="['fas', 'pen']")
-            b-btn(variant="danger" class="rounded-circle" @click="delTodo(index)")
+            b-btn(variant="link" class="rounded-circle btnAction" @click="delTodo(index)")
               font-awesome-icon(:icon="['fas', 'times']")
+    b-input(v-model="newTodo" class="inputAdd" maxlength="15" placeholder="Input a task!")
+    b-btn(variant="warning" class="btnAdd" @click="addTodo") Add
 </template>
 
 <script>

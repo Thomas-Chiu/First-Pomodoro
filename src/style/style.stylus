@@ -19,7 +19,7 @@ body
   padding 0.75rem
   display flex
   justify-content space-evenly
-  position absolute
+  position fixed
   left 0
   bottom 0
   border-top 2px solid #093830
@@ -53,21 +53,21 @@ body
     position relative
     #play
       position absolute
-      bottom 25%
+      bottom 0%
     #pause
       position absolute
       bottom 50%
     #forward
       position absolute
-      bottom 37.5%
-      right 32%
+      bottom 25%
+      right 30%
     #backward
       position absolute
-      bottom 37.5%
-      left 32%
+      bottom 25%
+      left 30%
     #progress
       position absolute
-      top 40%
+      top 42.5%
     img 
       object-fit cover
       max-width 40%
@@ -77,7 +77,7 @@ body
 @media(min-width 540px)
   #bb8 
     #progress
-      padding 12.5% 0
+      padding 7.5% 0
 
 @media(min-width 768px)
   #home 
@@ -89,9 +89,16 @@ body
         margin 5rem
     #bb8 
       #progress
-        padding 12.5% 0
+        padding 7.5% 0
       img 
         max-width 50%
+
+@media(min-width 992px)
+  #home
+    #bb8 
+      #progress
+        padding 12.5% 0
+
 
 #list
   position relative
@@ -116,12 +123,44 @@ body
     &:focus
       color tomato
 
+#settings
+  table
+    margin-top: 5rem
+  tr 
+    display flex
+    flex-flow row nowrap
+    justify-content space-around
+    &::after
+      content: 'Tap to select an alarm'
+      width: 100%
+      color: #093830
+      font-size: 1.5rem
+      font-weight: bold
+      position: absolute
+      left: 50%
+      top: 2.5%
+      transform: translate(-50%, -2.5%)
+  th  
+    width 33.333333%
+    flex 0 0 auto
+  td 
+    width 33.333333%
+    flex  0 0 auto
 
-    
-
-
-
-
-
-      
+@media(max-width 767px) 
+  #settings
+    table
+      height 100%
+      display: flex
+      justify-content: center
+      align-items: flex-end
+      margin-top 2rem
+    th
+      display none
+      background red
+    tr
+      flex-flow column nowrap
+    td 
+      width 100%
+      text-align center
 

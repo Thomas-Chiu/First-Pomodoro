@@ -1,5 +1,5 @@
 <template lang="pug">
-  #list(class="pt-3")
+  #list(class="pt-3 h-75")
     b-table-simple
       b-thead
         b-tr
@@ -24,8 +24,9 @@
               font-awesome-icon(:icon="['fas', 'pen']")
             b-btn(variant="link" class="rounded-circle btnAction" @click="delTodo(index)")
               font-awesome-icon(:icon="['fas', 'times']")
-    b-input(v-model="newTodo" class="inputAdd" maxlength="15" placeholder="Input a task!")
-    b-btn(variant="warning" class="btnAdd" @click="addTodo") Add
+    b-input(v-model="newTodo" class="inputAdd" maxlength="30" placeholder="Input a task!")
+    b-btn(variant="warning" class="btnAdd" @click="addTodo")
+      font-awesome-icon(:icon="['far', 'plus-square']")
 </template>
 
 <script>
@@ -53,6 +54,7 @@ export default {
     addTodo () {
       if (this.newTodo.length === 0) alert('Please input text.')
       else this.$store.commit('addTodo', this.newTodo)
+      this.newTodo = ''
     },
     delTodo (index) {
       this.$store.commit('delTodo', index)

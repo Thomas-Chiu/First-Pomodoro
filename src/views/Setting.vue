@@ -1,5 +1,5 @@
 <template lang="pug">
-  #settings
+  #settings(class="row")
     .col-12
       b-table(:items="items" :fields="fields" @row-clicked="selectAlarm")
         template(v-slot:cell(preview)="data")

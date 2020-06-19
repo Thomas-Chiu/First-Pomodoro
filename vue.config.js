@@ -1,5 +1,8 @@
 module.exports = {
   publicPath: './',
+  transpileDependencies: [
+    /\/node_modules\/vue-wcharts\//
+  ],
   pwa: {
     // manifest.json 的設定
     manifestOptions: {

@@ -6,7 +6,7 @@ body
   font-family var(--font-family-sans-serif), "Noto Sans TC" // 匯入字體方法二 (npm install noto-sans-tc，在CSS 變數 --font-family-sans-serif 新增 "Noto Sans TC")
   background #E7E4DB
   color #093830
-  overflow auto
+  overflow hidden
 
 #app
   width 100%
@@ -23,6 +23,7 @@ body
   left 0
   bottom 0
   border-top 2px solid #093830
+  z-index 99999
   a
     font-size 1.5rem
     color #093830
@@ -99,7 +100,6 @@ body
       #progress
         padding 12.5% 0
 
-
 #list
   position relative
   table
@@ -164,3 +164,14 @@ body
       width 100%
       text-align center
 
+#report
+  position relative
+  .row 
+    align-items center
+    &::before
+      content 'Weekly Pomodoro Report'
+      width 100%
+      font-size: 2rem
+      font-weight: bold
+      position absolute
+      top 5%

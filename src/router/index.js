@@ -16,7 +16,7 @@ const routes = [
   {
     path: '/list',
     name: 'List',
-    component: () => import('../views/List.vue'),
+    component: () => import(/* webpackChunkName: "list" */ '../views/List.vue'),
     meta: {
       title: 'List'
     }
@@ -24,7 +24,7 @@ const routes = [
   {
     path: '/setting',
     name: 'Setting',
-    component: () => import('../views/Setting.vue'),
+    component: () => import(/* webpackChunkName: "setting" */ '../views/Setting.vue'),
     meta: {
       title: 'Setting'
     }
@@ -32,15 +32,15 @@ const routes = [
   {
     path: '/report',
     name: 'Report',
-    component: () => import('../views/Report.vue'),
+    component: () => import(/* webpackChunkName: "report" */ '../views/Report.vue'),
     meta: {
-      title: 'Setting'
+      title: 'Report'
     }
   },
   {
     path: '*', // 404 用 *
     name: 'NotFound',
-    component: () => import('../views/NotFound.vue'),
+    component: () => import(/* webpackChunkName: "notfound" */ '../views/NotFound.vue'),
     meta: {
       title: '404 Error'
     }

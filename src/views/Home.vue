@@ -6,10 +6,19 @@
       b-list-group-item TIMER : {{ timeText }}
     #bb8(class="row")
       img(:src="'./img/icons/bb-8_icon.png'" class="col-12")
-      //- h3(class="col-12") {{ currentText }}
-      //- h4(class="col-12") {{ timeText }}
       //- 根據狀態碼來判斷顯示哪些按鈕
-      radial-progress-bar(id="progress" :diameter="diameter" :startColor="startColor" :stopColor="stopColor" :innerStrokeColor="innerStrokeColor" :completed-steps="timeLeft" :total-steps="totalSteps" :animateSpeed="animateSpeed" :timingFunc="timingFunc" :isClockwise="isClockwise")
+      radial-progress-bar(
+        id="progress"
+        :diameter="diameter"
+        :startColor="startColor"
+        :stopColor="stopColor"
+        :innerStrokeColor="innerStrokeColor"
+        :completed-steps="timeLeft"
+        :total-steps="totalSteps"
+        :animateSpeed="animateSpeed"
+        :timingFunc="timingFunc"
+        :isClockwise="isClockwise"
+      )
       b-btn(id="play" @click="start" variant="link")
         font-awesome-icon(:icon="['fas', 'play']")
       b-btn(id="pause" @click="pause" variant="link")
@@ -23,7 +32,6 @@
 <script>
 import RadialProgressBar from 'vue-radial-progress'
 const timeLeftOG = parseInt(process.env.VUE_APP_TIMELEFT) // 注意環境檔變數要用parseInt()
-const date = new Date()
 
 export default {
   name: 'Home',
@@ -31,8 +39,7 @@ export default {
     return {
       status: 0, // 定義狀態碼 0 = 停止、1 = 播放、2 = 暫停
       timer: 0,
-      // completedSteps: this.$store.getters.timeLeft, // 以下是RadialProgressBar 的變數
-      totalSteps: timeLeftOG,
+      totalSteps: timeLeftOG, // 以下是RadialProgressBar 的變數
       diameter: 100,
       startColor: '#e6664d',
       stopColor: '#e6664d',
@@ -47,8 +54,54 @@ export default {
   },
   computed: {
     dateText () {
-      return date
-      // return `${date.getTime()}`
+      const now = new Date()
+      const yr = now.getFullYear()
+      let mon = now.getMonth()
+      const date = now.getDate()
+      let day = now.getDay()
+      switch (mon) {
+        case 0: mon = 'Jan'
+          break
+        case 1: mon = 'Feb'
+          break
+        case 2: mon = 'Mar'
+          break
+        case 3: mon = 'Apr'
+          break
+        case 4: mon = 'May'
+          break
+        case 5: mon = 'Jun'
+          break
+        case 6: mon = 'Jul'
+          break
+        case 7: mon = 'Aug'
+          break
+        case 8: mon = 'Sep'
+          break
+        case 9: mon = 'Oct'
+          break
+        case 10: mon = 'Nov'
+          break
+        case 11: mon = 'Dec'
+          break
+      }
+      switch (day) {
+        case 0: day = 'Sun'
+          break
+        case 1: day = 'Mon'
+          break
+        case 2: day = 'Tue'
+          break
+        case 3: day = 'Wed'
+          break
+        case 4: day = 'Thu'
+          break
+        case 5: day = 'Fri'
+          break
+        case 6: day = 'Sat'
+          break
+      }
+      return mon + ' ' + date + ', ' + yr + ' ' + day
     },
     currentText () { // current.length > 0 代表字串裡有文字
       return this.current.length > 0 ? this.current : this.todos.length > 0 ? 'Click to start.' : 'All done.'
